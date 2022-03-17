@@ -1,0 +1,1 @@
+int euclidean(const int a, const int b);
