@@ -6,7 +6,7 @@
         {
             "label": "g++ build with link to main",
             "type": "shell",
-            "command": "g++ -std=c++17 -g main.cpp ${fileBasename} -o ${fileBasenameNoExtension}.out && ${fileBasenameNoExtension}.out",
+            "command": "g++ -std=c++17 -g main.cpp ${fileBasename} -o ${fileBasenameNoExtension}.out",
             "options": {"cwd": "${fileDirname}"}
         },
         {
