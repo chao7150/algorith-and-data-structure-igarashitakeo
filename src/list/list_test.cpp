@@ -33,3 +33,11 @@ TEST(cell, pop_back) {
   pop_back(&c);
   EXPECT_EQ(length(c), 1);
 }
+
+TEST(cell, insertAtZero) {
+  Cell c = {1, nullptr};
+  Cell* ptr = &c;
+  push(&c, 2);
+  insert(&ptr, 0, 0);
+  EXPECT_EQ(at(ptr, 0), 0);
+}

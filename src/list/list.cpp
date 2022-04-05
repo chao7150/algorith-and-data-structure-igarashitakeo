@@ -37,3 +37,19 @@ void pop_back(Cell *cell) {
   }
   pop_back(cell->next);
 }
+
+Cell *at_pointer(Cell *cell, const int position) {
+  Cell *current = cell;
+  for (int i = 0; i < position; i++) {
+    cell = cell->next;
+  }
+  return cell;
+}
+
+void insert(Cell **head, const int position, const int value) {
+  Cell *target = new Cell{value, nullptr};
+  if (position == 0) {
+    target->next = *head;
+    *head = target;
+  }
+};

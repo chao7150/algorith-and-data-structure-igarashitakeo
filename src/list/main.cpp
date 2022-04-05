@@ -30,7 +30,15 @@ void scenarioB() {
   std::cout << at(&c1, 1) << std::endl;
 }
 
+void scenarioC() {
+  Cell c = {1, nullptr};
+  Cell* ptr = &c;
+  push(&c, 2);
+  insert(&ptr, 0, 0);
+}
+
 int main() {
-  scenarioA();
-  scenarioB();
+  // scenarioA();
+  // scenarioB();
+  scenarioC();
 }
