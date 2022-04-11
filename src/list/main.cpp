@@ -32,13 +32,22 @@ void scenarioB() {
 
 void scenarioC() {
   Cell c = {1, nullptr};
-  Cell* ptr = &c;
+  Cell *ptr = &c;
   push(&c, 2);
   insert(&ptr, 0, 0);
+}
+
+void scenarioD() {
+  Cell *ptr = new Cell{1, nullptr};
+  push(ptr, 2); // [1, 2]
+  push(ptr, 3); // [1, 2, 3]
+  erase(&ptr, 0);
+  erase(&ptr, 0);
 }
 
 int main() {
   // scenarioA();
   // scenarioB();
-  scenarioC();
+  // scenarioC();
+  scenarioD();
 }

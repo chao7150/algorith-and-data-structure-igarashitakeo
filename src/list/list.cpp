@@ -52,4 +52,33 @@ void insert(Cell **head, const int position, const int value) {
     target->next = *head;
     *head = target;
   }
+  Cell *previous = at_pointer(*head, position - 1);
+  Cell *next = previous->next;
+  previous->next = target;
+  target->next = next;
 };
+
+void erase(Cell **head, const int position) {
+  Cell *phead = *head;
+  if (position == 0) {
+    // 削除対象は先頭である
+    *head = phead->next;
+    delete phead;
+    return;
+  }
+  if (position == 1) {
+    Cell *ptarget = phead->next;
+    Cell *pchild = ptarget->next;
+    if (pchild == nullptr) {
+      // 削除対象は末尾要素である
+      delete phead->next;
+      phead->next = nullptr;
+    } else {
+      // 削除対象の後ろにも要素がある
+      delete phead->next;
+      phead->next = pchild;
+    }
+    return;
+  }
+  erase(&(phead->next), position - 1);
+}
