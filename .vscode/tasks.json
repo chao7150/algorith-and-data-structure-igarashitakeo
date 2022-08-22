@@ -14,6 +14,11 @@
             "type": "shell",
             "command": "g++ -std=c++17 ${fileBasename} ${fileBasenameNoExtension}_test.cpp -o test.out -L/usr/local/lib -lgtest -lgtest_main -lpthread && ./test.out",
             "options": {"cwd": "${fileDirname}"}
+        },
+        {
+            "label": "go run",
+            "type": "shell",
+            "command": "go run ${file}"
         }
     ]
 }
