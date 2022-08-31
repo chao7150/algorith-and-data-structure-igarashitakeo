@@ -26,3 +26,28 @@ func TestMerge(t *testing.T) {
 		}
 	}
 }
+
+func TestAlign(t *testing.T) {
+	h := Heap{1, 3, 6, 4, 8, 7, 10, 5, 9, 11, 2}
+	h.align(10)
+	res := []int{1, 2, 6, 4, 3, 7, 10, 5, 9, 11, 8}
+	for i, v := range h {
+		if v != res[i] {
+			t.Fail()
+		}
+	}
+}
+
+func TestPush(t *testing.T) {
+	h := Heap{}
+	h.push(31)
+	h.push(21)
+	h.push(48)
+	h.push(9)
+	res := []int{9, 21, 48, 31}
+	for i, v := range h {
+		if v != res[i] {
+			t.Fail()
+		}
+	}
+}

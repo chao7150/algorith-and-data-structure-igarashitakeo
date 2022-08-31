@@ -79,3 +79,21 @@ func merge(a []int, b []int) []int {
 	}
 	return res
 }
+
+type Heap []int
+
+func (h *Heap) align(idx int) {
+	val := (*h)[idx]
+	parentIdx := (idx - 1) / 2
+	parentVal := (*h)[parentIdx]
+	if val < parentVal {
+		(*h)[idx] = parentVal
+		(*h)[parentIdx] = val
+		h.align(parentIdx)
+	}
+}
+
+func (h *Heap) push(i int) {
+	*h = append(*h, i)
+	h.align(len(*h) - 1)
+}
