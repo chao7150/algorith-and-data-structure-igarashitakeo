@@ -36,7 +36,8 @@ func AllFixed(m DistanceMap) bool {
 	return true
 }
 
-func DijkstraShortestPath(m Matrix, start int) DistanceMap {
+func DijkstraShortestPath(m Matrix, start int, dest int) (DistanceMap, []int) {
+	route := []int{}
 	currentNode := start
 	distanceMap := make(DistanceMap, len(m))
 	// 初期化
@@ -62,9 +63,11 @@ func DijkstraShortestPath(m Matrix, start int) DistanceMap {
 			}
 			pathLengthViaCurrentNode := distanceMap[currentNode].distance + m[currentNode][i]
 			if pathLengthViaCurrentNode < v.distance {
+
 				distanceMap[i] = DistanceMapItem{pathLengthViaCurrentNode, currentNode, false}
 			}
 		}
+		route = append(route, currentNode)
 		distanceMap[currentNode].fixed = true
 		currentNode = getNearestUnfixedNode(distanceMap)
 		if AllFixed(distanceMap) {
@@ -72,5 +75,5 @@ func DijkstraShortestPath(m Matrix, start int) DistanceMap {
 		}
 	}
 
-	return distanceMap
+	return distanceMap, route
 }
