@@ -10,18 +10,28 @@ func KMP(text string, pattern string, slideMap []int) int {
 	if textLength < patternLength {
 		return 0
 	}
-	for t := range textRunes[:textLength-patternLength+1] {
+	if len(slideMap) != patternLength {
+		return 0
+	}
+	t := 0
+	skip := 0
+	for {
 		for p := range patternRunes {
 			fmt.Printf("t: %d, text: %c(%U), p: %d, pattern: %c(%U)\n", t, textRunes[t+p], textRunes[t+p], p, patternRunes[p], patternRunes[p])
 			if textRunes[t+p] != patternRunes[p] {
+				skip = slideMap[p]
 				break
 			}
 			if p == patternLength-1 {
 				return t
 			}
 		}
+		if textLength-patternLength == t {
+			// これ以上ループを回すとout of rangeになる
+			return 0
+		}
+		t = t + skip
 	}
-	return 0
 }
 
 func main() {

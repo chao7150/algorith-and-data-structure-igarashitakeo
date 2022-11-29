@@ -5,20 +5,19 @@ import "testing"
 func TestKMP(t *testing.T) {
 	text := "にわにはにわにわとりがいる"
 	pattern := "にわとり"
-	slideMap := []int{1, 1, 1, 1}
-	res := KMP(text, pattern, slideMap)
+	res := KMP(text, pattern, []int{1, 1, 1, 1})
 	if res != 6 {
 		t.Fail()
 	}
-	res = KMP("ながの", "たい", slideMap)
+	res = KMP("ながの", "たい", []int{1, 1})
 	if res != 0 {
 		t.Fail()
 	}
-	res = KMP("ながの", "のい", slideMap)
+	res = KMP("ながの", "のい", []int{1, 1})
 	if res != 0 {
 		t.Fail()
 	}
-	res = KMP("a", "abc", slideMap)
+	res = KMP("a", "abc", []int{1, 1, 1})
 	if res != 0 {
 		t.Fail()
 	}
