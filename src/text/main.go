@@ -4,9 +4,13 @@ import "fmt"
 
 func KMP(text string, pattern string, slideMap []int) int {
 	textRunes := []rune(text)
+	textLength := len(textRunes)
 	patternRunes := []rune(pattern)
 	patternLength := len(patternRunes)
-	for t := range textRunes {
+	if textLength < patternLength {
+		return 0
+	}
+	for t := range textRunes[:textLength-patternLength+1] {
 		for p := range patternRunes {
 			fmt.Printf("t: %d, text: %c(%U), p: %d, pattern: %c(%U)\n", t, textRunes[t+p], textRunes[t+p], p, patternRunes[p], patternRunes[p])
 			if textRunes[t+p] != patternRunes[p] {

@@ -14,4 +14,12 @@ func TestKMP(t *testing.T) {
 	if res != 0 {
 		t.Fail()
 	}
+	res = KMP("ながの", "のい", slideMap)
+	if res != 0 {
+		t.Fail()
+	}
+	res = KMP("a", "abc", slideMap)
+	if res != 0 {
+		t.Fail()
+	}
 }
