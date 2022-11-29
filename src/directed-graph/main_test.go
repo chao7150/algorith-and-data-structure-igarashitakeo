@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -70,5 +71,17 @@ func TestGetNearestItem(t *testing.T) {
 	res = getNearestUnfixedNode(DistanceMap{{2, 0, true}, {3, 1, false}, {1, 2, true}})
 	if res != 1 {
 		t.Fail()
+	}
+}
+
+func TestTopologicalSort(t *testing.T) {
+	m := Matrix{{0, 1, 0, 1, 0, 0}, {0, 0, 0, 0, 1, 0}, {0, 1, 0, 1, 0, 0}, {0, 0, 0, 0, 1, 1}, {0, 0, 0, 0, 0, 1}, {0, 0, 0, 0, 0, 0}}
+	sorted := TopologicalSort(m)
+	res := []int{2, 0, 3, 1, 4, 5}
+	fmt.Println(sorted)
+	for i, v := range sorted {
+		if v != res[i] {
+			t.Fail()
+		}
 	}
 }

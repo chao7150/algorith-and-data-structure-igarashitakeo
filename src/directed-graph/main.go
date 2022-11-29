@@ -77,3 +77,44 @@ func DijkstraShortestPath(m Matrix, start int, dest int) (DistanceMap, []int) {
 
 	return distanceMap, route
 }
+
+func getChildrenFromMatrix(m Matrix, n int) []int {
+	ret := []int{}
+	for i, v := range m[n] {
+		if v == 1 {
+			ret = append(ret, i)
+		}
+	}
+	return ret
+}
+
+func dfs(n int, m Matrix, sorted *[]int, visited *[]bool) {
+	if (*visited)[n] {
+		return
+	}
+	// visited[n] == false
+	(*visited)[n] = true
+	for _, v := range getChildrenFromMatrix(m, n) {
+
+		dfs(v, m, sorted, visited)
+	}
+	*sorted = append(*sorted, n)
+}
+
+func ReverseSlice(s []int) []int {
+	len := len(s)
+	res := make([]int, len)
+	for i, v := range s {
+		res[len-1-i] = v
+	}
+	return res
+}
+
+func TopologicalSort(m Matrix) []int {
+	sorted := []int{}
+	visited := make([]bool, len(m))
+	for i := 0; i < len(m); i++ {
+		dfs(i, m, &sorted, &visited)
+	}
+	return ReverseSlice(sorted)
+}
